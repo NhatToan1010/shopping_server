@@ -99,13 +99,17 @@ class SingleAddress extends StatelessWidget {
                         Icon(Iconsax.location, color: primaryText, size: 16),
                         const SizedBox(width: AppSize.extraSmall),
 
-                        Text(
-                          userAddress.getAddress(),
-                          softWrap: true,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .apply(color: primaryText),
+                        Expanded(
+                          child: Text(
+                            userAddress.getAddress(),
+                            softWrap: true,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .apply(color: primaryText),
+                          ),
                         ),
                       ],
                     )
