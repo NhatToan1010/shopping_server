@@ -7,13 +7,14 @@ class SectionHeading extends StatelessWidget {
     this.showActionButton = true,
     required this.title,
     this.buttonTitle = 'View all',
-    this.onPressed,
+    this.onPressed, this.maxLines = 1,
   });
 
   final Color? textColor;
   final bool showActionButton;
   final String title, buttonTitle;
   final VoidCallback? onPressed;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class SectionHeading extends StatelessWidget {
               .titleLarge!
               .apply(color: textColor),
           textAlign: TextAlign.start,
-          maxLines: 1,
+          maxLines: maxLines,
           overflow: TextOverflow.ellipsis,
         ),
         if (showActionButton)
