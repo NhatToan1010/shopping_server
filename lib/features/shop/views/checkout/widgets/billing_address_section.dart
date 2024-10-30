@@ -59,17 +59,22 @@ class BillingAddressSection extends StatelessWidget {
                 const SizedBox(height: AppSize.small),
 
                 // ----- Shipping Location
-                Wrap(
-                  spacing: AppSize.small,
+                Row(
                   children: [
                     const Icon(
                       Icons.location_pin,
                       size: 16,
                       color: Colors.grey,
                     ),
-                    Text(
-                      addressController.selectedAddress.value.getAddress(),
-                      style: Theme.of(context).textTheme.labelLarge,
+                    const SizedBox(width: AppSize.small),
+
+                    Expanded(
+                      child: Text(
+                        addressController.selectedAddress.value.getAddress(),
+                        style: Theme.of(context).textTheme.labelLarge,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     )
                   ],
                 ),

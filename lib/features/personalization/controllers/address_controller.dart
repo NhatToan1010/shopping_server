@@ -161,7 +161,8 @@ class AddressController extends GetxController {
           children: [
             // --- Heading
             const SectionHeading(
-              title: 'Select The Address You Want To Deliver',
+              title: 'Select The Address',
+              maxLines: 2,
               showActionButton: false,
             ),
             const SizedBox(height: AppSize.spaceBtwSections),
