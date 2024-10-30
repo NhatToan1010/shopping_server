@@ -49,7 +49,7 @@ class ProductCardVertical extends StatelessWidget {
 
             // ----- Product Image -----
             RoundedContainer(
-              height: 190,
+              height: 170,
               width: double.infinity,
               backgroundColor: isDark ? AppPallete.darkGrey : AppPallete.greyColor,
               child: Stack(
@@ -58,7 +58,6 @@ class ProductCardVertical extends StatelessWidget {
                     width: double.infinity,
                     imageUrl: productIndex!.thumbnail, // Fetch Data
                     backgroundColor: isDark ? AppPallete.darkGrey : AppPallete.greyColor,
-                    halfRadius: true,
                     fit: BoxFit.cover,
                     isNetworkImage: true,
                   ),
