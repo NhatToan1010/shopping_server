@@ -57,7 +57,7 @@ class OrderModel {
   String get formattedOrderDate => Formatter.formatDate(orderDate);
 
   String get formattedDeliveryDate =>
-      deliveryDate != null ? Formatter.formatDate(deliveryDate) : '';
+      deliveryDate != null ? Formatter.formatDate(deliveryDate) : 'Calculating...';
 
   String get orderStatusText => orderStatus == OrderStatus.delivered
       ? 'Delivered'
@@ -70,20 +70,19 @@ class OrderModel {
       final data = document.data()!;
 
       return OrderModel(
-        itemsPurchase: (data["ItemsPurchase"])
-            .map<CartModel>((item) => CartModel.fromJson(item as Map<String, dynamic>))
-            .toList() as List<CartModel>,
         id: data["Id"] as String,
         userId: data["UserId"] as String,
         paymentMethod: data["PaymentMethod"] as String,
-        totalAmount: (data["TotalAmount"] ?? 0.0) as double,
+        totalAmount: data["TotalAmount"] as double,
         orderStatus: OrderStatus.values.firstWhere((e) => e.toString() == data["OrderStatus"]),
         orderDate: (data["OrderDate"] as Timestamp).toDate(),
         deliveryAddress: AddressModel.fromMap(data["DeliveryAddress"] as Map<String, dynamic>),
         deliveryDate: data["DeliveryDate"] != null
             ? (data["DeliveryDate"] as Timestamp).toDate()
             : null,
-
+        itemsPurchase: data["ItemsPurchase"]
+            .map<CartModel>((item) => CartModel.fromJson(item as Map<String, dynamic>))
+            .toList() as List<CartModel>,
       );
     }
     return empty();

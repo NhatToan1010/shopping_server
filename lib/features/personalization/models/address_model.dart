@@ -60,11 +60,11 @@ class AddressModel {
         addressName: data["AddressName"] ?? '',
         street: data["Street"] ?? '',
         state: data["State"] ?? '',
-        postalCode: data["PostalCode"] ?? '',
+        postalCode: data["PostalCode"] as String,
         city: data["City"] ?? '',
         country: data["Country"] ?? '',
         selectedAddress: data["SelectedAddress"] ?? false,
-        phoneNo: data["PhoneNo"] ?? '',
+        phoneNo: data["PhoneNo"] as String,
       );
     } else {
       return empty();
