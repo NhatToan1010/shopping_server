@@ -27,42 +27,72 @@ class ListOrderWidget extends StatelessWidget {
           children: [
             // ----- Shipping Status
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(Iconsax.truck, size: 24),
-                const SizedBox(width: AppSize.small),
-      
-                // ----- Status & Date
                 Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Row(
                     children: [
-                      Text(
-                        order.orderStatusText,
-                        style: Theme.of(context).textTheme.bodyLarge!.apply(
-                              color: HelperFunctions.isDarkMode(context)
-                                  ? AppPallete.secondary
-                                  : AppPallete.primary,
-                              fontWeightDelta: 1,
+                      const Icon(Iconsax.status, size: 24),
+                      const SizedBox(width: AppSize.small),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text('Order Status',
+                                style: Theme.of(context).textTheme.labelMedium),
+                            Text(
+                              order.orderStatusText,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .apply(
+                                    color: HelperFunctions.isDarkMode(context)
+                                        ? AppPallete.secondary
+                                        : AppPallete.primary,
+                                    fontWeightDelta: 1,
+                                  ),
                             ),
+                          ],
+                        ),
                       ),
-                      Text(order.formattedOrderDate,
-                          style: Theme.of(context).textTheme.bodyMedium),
                     ],
                   ),
                 ),
-      
+
+                Expanded(
+                  child: Row(
+                    children: [
+                      const Icon(Iconsax.truck, size: 24),
+                      const SizedBox(width: AppSize.small),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text('Date Ordered',
+                                style: Theme.of(context).textTheme.labelMedium),
+                            Text(order.formattedOrderDate,
+                                style: Theme.of(context).textTheme.bodyMedium),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
                 // ----- Icon More
-                Icon(Icons.more_outlined,
+                Icon(Iconsax.more,
                     size: 16,
                     color: HelperFunctions.isDarkMode(context)
                         ? AppPallete.greyColor
                         : AppPallete.darkGrey),
               ],
             ),
-      
+
             const SizedBox(height: AppSize.spaceBtwItems),
-      
+
             // ----- Order Code & Delivery Date
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,7 +119,7 @@ class ListOrderWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-      
+
                 // ----- Delivery Date
                 Expanded(
                   child: Row(
@@ -111,27 +141,34 @@ class ListOrderWidget extends StatelessWidget {
                     ],
                   ),
                 ),
+
+                const Icon(Icons.more_outlined, size: 16, color: Colors.transparent),
               ],
             ),
             const SizedBox(height: AppSize.spaceBtwItems),
-      
+
             // --- Delivery Address
             Row(
               children: [
                 const Icon(Iconsax.location, size: 24),
                 const SizedBox(width: AppSize.small),
-      
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Delivery Address',
-                      style: Theme.of(context).textTheme.labelMedium,
-                    ),
-                    Text(order.deliveryAddress!.getAddress(),
-                        style: Theme.of(context).textTheme.bodyMedium),
-                  ],
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Delivery Address',
+                        style: Theme.of(context).textTheme.labelMedium,
+                      ),
+                      Text(
+                        order.deliveryAddress!.getAddress(),
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
