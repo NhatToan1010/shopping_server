@@ -46,10 +46,10 @@ class StoreScreen extends StatelessWidget {
               // ----- Header Sections -----
               SliverAppBar(
                 automaticallyImplyLeading: false,
-                pinned: false,
+                pinned: true,
                 floating: true,
                 backgroundColor: isDark ? AppPallete.blackColor : AppPallete.whiteColor,
-                expandedHeight: DeviceUtils.getScreenHeight() * 0.4,
+                expandedHeight: DeviceUtils.getScreenHeight() * 0.5,
                 flexibleSpace: Padding(
                   padding: const EdgeInsets.all(AppSize.defaultSpace),
                   child: ListView(
@@ -102,7 +102,7 @@ class StoreScreen extends StatelessWidget {
           },
           body: TabBarView(
             children: categoryController.featuredCategories
-                .map((item) => TabCategory(category: item))
+                .map((item) => SingleChildScrollView(child: TabCategory(category: item)))
                 .toList(),
           ),
         ),

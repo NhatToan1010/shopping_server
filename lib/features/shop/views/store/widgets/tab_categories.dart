@@ -37,6 +37,7 @@ class TabCategory extends StatelessWidget {
                 // --- Return UI for each sub category items
                 return ListView.separated(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return FutureBuilder(
                         // --- Get all product from each sub category
