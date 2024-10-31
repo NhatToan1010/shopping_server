@@ -33,7 +33,7 @@ class ProductImageSlider extends StatelessWidget {
         color: AppPallete.backgroundLight,
         child: Stack(
           children: [
-            // ===== AppBar
+            // ===== Main Product Image
             SizedBox(
               height: 500,
               child: Obx(
@@ -55,14 +55,16 @@ class ProductImageSlider extends StatelessWidget {
               ),
             ),
 
-            // ===== Main Product Image
+            // ===== AppBar
             CustomAppbar(
               showBackArrow: true,
+              leadingColor: AppPallete.blackColor,
               actions: [
                 CircularIcon(
                     iconColor: Colors.red,
                     icon: Iconsax.heart,
-                    onPressed: () {})
+                    onPressed: () {},
+                )
               ],
             ),
 
@@ -84,7 +86,7 @@ class ProductImageSlider extends StatelessWidget {
                       final selectedImage = controller.currentImage.value == images[index];
                       return RoundedRectImage(
                         boxShadow: [ShadowStyle.lightProductShadow],
-                        borderColor: selectedImage ? AppPallete.darkGrey : AppPallete.transparentColor,
+                        border: Border.all(color: selectedImage ? AppPallete.darkGrey : AppPallete.transparentColor,),
                         width: 80,
                         fit: BoxFit.contain,
                         backgroundColor: isDark ? AppPallete.darkerGrey : AppPallete.lightGrey,
