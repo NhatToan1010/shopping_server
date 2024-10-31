@@ -13,35 +13,37 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = CartController.instance;
 
-    return Scaffold(
-      // ----- AppBar
-      appBar: const CustomAppbar(
-        title: Text('Cart'),
-        showBackArrow: true,
-      ),
-
-      // ----- Body
-      body: Obx(
-        () {
-          return controller.cartItems.isEmpty
-              ? Center(child: Text('No Item Found!', style: Theme.of(context).textTheme.labelMedium),)
-              : const SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.all(AppSize.defaultSpace),
-                    child: ListCartItem(),
-                  ),
-                );
-        },
-      ),
-
-      bottomNavigationBar: controller.cartItems.isEmpty ? const SizedBox() : Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: AppSize.medium,
-            vertical: AppSize.small,
+    return SafeArea(
+      child: Scaffold(
+        // ----- AppBar
+        appBar: const CustomAppbar(
+          title: Text('Cart'),
+          showBackArrow: true,
         ),
-        child: ElevatedButton(
-          onPressed: () => Get.to(() => const CheckoutScreen()),
-          child: Text('Checkout \$${controller.totalPrice.value}'),
+      
+        // ----- Body
+        body: Obx(
+          () {
+            return controller.cartItems.isEmpty
+                ? Center(child: Text('No Item Found!', style: Theme.of(context).textTheme.labelMedium),)
+                : const SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.all(AppSize.defaultSpace),
+                      child: ListCartItem(),
+                    ),
+                  );
+          },
+        ),
+      
+        bottomNavigationBar: controller.cartItems.isEmpty ? const SizedBox() : Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppSize.medium,
+              vertical: AppSize.small,
+          ),
+          child: ElevatedButton(
+            onPressed: () => Get.to(() => const CheckoutScreen()),
+            child: Text('Checkout \$${controller.totalPrice.value}'),
+          ),
         ),
       ),
     );

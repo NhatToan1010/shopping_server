@@ -11,21 +11,23 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return const Scaffold(
-      appBar: CustomAppbar(title: Text('Profile'), showBackArrow: true,),
-
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(AppSize.defaultSpace),
-          child: Column(
-            children: [
-              // ----- Avatar
-              ProfileAvatar(),
-
-              // ----- Details
-              ProfileDetail(),
-
-            ],
+    return const SafeArea(
+      child: Scaffold(
+        appBar: CustomAppbar(title: Text('Profile'), showBackArrow: true,),
+      
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(AppSize.defaultSpace),
+            child: Column(
+              children: [
+                // ----- Avatar
+                ProfileAvatar(),
+      
+                // ----- Details
+                ProfileDetail(),
+      
+              ],
+            ),
           ),
         ),
       ),

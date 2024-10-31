@@ -16,43 +16,46 @@ class UserAddressScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = AddressController.instance;
 
-    return Scaffold(
-      // ----- Floating Action Button
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.to(() => const AddNewAddressScreen()),
-        child: const Icon(Iconsax.add, color: AppPallete.whiteColor),
-      ),
-
-      // ----- AppBar
-      appBar: const CustomAppbar(title: Text('Address'), showBackArrow: true),
-
-      // ----- Body
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSize.defaultSpace),
-          child: Obx(
-            () => FutureBuilder(
-                // Use key to trigger refresh
-                key: Key(controller.refreshData.value.toString()),
-                future: controller.fetchAllUserAddress(),
-                builder: (context, snapshot) {
-                  final response =
-                      CloudHelperFunctions.checkMultipleStateRecord(
-                          snapshot: snapshot);
-                  if (response != null) return response;
-
-                  final addresses = snapshot.data!;
-
-                  return ListView.separated(
-                    itemCount: addresses.length,
-                    shrinkWrap: true,
-                    separatorBuilder: (_, index) => const SizedBox(height: AppSize.medium),
-                    itemBuilder: (_, index) => SingleAddress(
-                      userAddress: addresses[index],
-                      onTap: () => controller.changeSelectedAddress(addresses[index]),
-                    ),
-                  );
-                }),
+    return SafeArea(
+      child: Scaffold(
+        // ----- Floating Action Button
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Get.to(() => const AddNewAddressScreen()),
+          child: const Icon(Iconsax.add, color: AppPallete.whiteColor),
+        ),
+      
+        // ----- AppBar
+        appBar: const CustomAppbar(title: Text('Address'), showBackArrow: true),
+      
+        // ----- Body
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSize.defaultSpace),
+            child: Obx(
+              () => FutureBuilder(
+                  // Use key to trigger refresh
+                  key: Key(controller.refreshData.value.toString()),
+                  future: controller.fetchAllUserAddress(),
+                  builder: (context, snapshot) {
+                    final response =
+                        CloudHelperFunctions.checkMultipleStateRecord(
+                            snapshot: snapshot);
+                    if (response != null) return response;
+      
+                    final addresses = snapshot.data!;
+      
+                    return ListView.separated(
+                      itemCount: addresses.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      separatorBuilder: (_, index) => const SizedBox(height: AppSize.medium),
+                      itemBuilder: (_, index) => SingleAddress(
+                        userAddress: addresses[index],
+                        onTap: () => controller.changeSelectedAddress(addresses[index]),
+                      ),
+                    );
+                  }),
+            ),
           ),
         ),
       ),

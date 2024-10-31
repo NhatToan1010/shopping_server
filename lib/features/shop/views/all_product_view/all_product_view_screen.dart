@@ -25,26 +25,28 @@ class AllProductViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(AllProductController());
 
-    return Scaffold(
-      // ----- AppBar
-      appBar:
-          const CustomAppbar(title: Text('All Product'), showBackArrow: true),
-
-      // ----- Body
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSize.defaultSpace),
-          child: FutureBuilder(
-              future: futureMethod ?? controller.fetchProductsByQuery(query),
-              builder: (context, snapshot) {
-                // --- Check states of FutureBuilder snapshot
-                final widget = CloudHelperFunctions.checkMultipleStateRecord(snapshot: snapshot);
-                if (widget != null) return widget;
-
-                // --- If products found
-                final products = snapshot.data!;
-                return SortableProduct(products: products);
-              }),
+    return SafeArea(
+      child: Scaffold(
+        // ----- AppBar
+        appBar:
+            const CustomAppbar(title: Text('All Product'), showBackArrow: true),
+      
+        // ----- Body
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSize.defaultSpace),
+            child: FutureBuilder(
+                future: futureMethod ?? controller.fetchProductsByQuery(query),
+                builder: (context, snapshot) {
+                  // --- Check states of FutureBuilder snapshot
+                  final widget = CloudHelperFunctions.checkMultipleStateRecord(snapshot: snapshot);
+                  if (widget != null) return widget;
+      
+                  // --- If products found
+                  final products = snapshot.data!;
+                  return SortableProduct(products: products);
+                }),
+          ),
         ),
       ),
     );

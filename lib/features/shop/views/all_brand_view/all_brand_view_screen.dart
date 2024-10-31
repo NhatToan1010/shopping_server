@@ -15,36 +15,38 @@ class AllBrandViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = BrandController.instance;
 
-    return Scaffold(
-      // ----- AppBar
-      appBar: const CustomAppbar(title: Text('All Brand'), showBackArrow: true),
-
-      // ----- Body
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSize.defaultSpace),
-          child: Column(
-            children: [
-              Obx(
-              () {
-                if (controller.isLoading.value) {
-                  return const BrandShimmerEffect();
-                } else if (controller.allBrands.isEmpty) {
-                  return const Center(child: Text('No Data Found!'));
-                }
-                return GridLayout(
-                  itemCount: controller.allBrands.length,
-                  itemBuilder: (context, index) =>
-                      BrandCard(
-                        showBorder: true,
-                        onTap: () => Get.to(() => BrandProducts(brand: controller.allBrands[index],)),
-                        brand: controller.allBrands[index],
-                      ),
-                  mainAxisExtent: 80,
-                );
-              },
-              )
-            ],
+    return SafeArea(
+      child: Scaffold(
+        // ----- AppBar
+        appBar: const CustomAppbar(title: Text('All Brand'), showBackArrow: true),
+      
+        // ----- Body
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSize.defaultSpace),
+            child: Column(
+              children: [
+                Obx(
+                () {
+                  if (controller.isLoading.value) {
+                    return const BrandShimmerEffect();
+                  } else if (controller.allBrands.isEmpty) {
+                    return const Center(child: Text('No Data Found!'));
+                  }
+                  return GridLayout(
+                    itemCount: controller.allBrands.length,
+                    itemBuilder: (context, index) =>
+                        BrandCard(
+                          showBorder: true,
+                          onTap: () => Get.to(() => BrandProducts(brand: controller.allBrands[index],)),
+                          brand: controller.allBrands[index],
+                        ),
+                    mainAxisExtent: 80,
+                  );
+                },
+                )
+              ],
+            ),
           ),
         ),
       ),

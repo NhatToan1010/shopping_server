@@ -22,69 +22,71 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            // ----- Product Image Slider
-            ProductImageSlider(product: product),
-
-            // ----- Product Details
-            Padding(
-              padding: const EdgeInsets.all(AppSize.defaultSpace),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // ===== Rating & Share Button
-                  const RatingAndShare(),
-
-                  // ===== Price, Title, Stock, & Brand
-                  ProductMetaData(product: product),
-                  const SizedBox(height: AppSize.spaceBtwItems),
-
-                  // ===== Attributes, Colors, Sizes
-                  if (product.productType == ProductType.variable.toString())
-                    Column(
-                      children: [
-                        ProductAttribute(product: product),
-                        const SizedBox(height: AppSize.spaceBtwSections),
-                      ],
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              // ----- Product Image Slider
+              ProductImageSlider(product: product),
+      
+              // ----- Product Details
+              Padding(
+                padding: const EdgeInsets.all(AppSize.defaultSpace),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // ===== Rating & Share Button
+                    const RatingAndShare(),
+      
+                    // ===== Price, Title, Stock, & Brand
+                    ProductMetaData(product: product),
+                    const SizedBox(height: AppSize.spaceBtwItems),
+      
+                    // ===== Attributes, Colors, Sizes
+                    if (product.productType == ProductType.variable.toString())
+                      Column(
+                        children: [
+                          ProductAttribute(product: product),
+                          const SizedBox(height: AppSize.spaceBtwSections),
+                        ],
+                      ),
+      
+                    // ===== Checkout Button
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () => Get.to(() => const CheckoutScreen()),
+                        child: const Text('Checkout'),
+                      ),
                     ),
-
-                  // ===== Checkout Button
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () => Get.to(() => const CheckoutScreen()),
-                      child: const Text('Checkout'),
+                    const SizedBox(height: AppSize.spaceBtwItems),
+      
+                    // ===== Description
+                    const SectionHeading(title: 'Description', showActionButton: false),
+                    const SizedBox(height: AppSize.spaceBtwItems),
+      
+                    CustomReadMoreText(content: product.description ?? '', trimLines: 2,),
+      
+                    const SizedBox(height: AppSize.spaceBtwItems),
+                    const Divider(),
+                    const SizedBox(height: AppSize.spaceBtwItems),
+      
+                    // ===== Reviews
+                    SectionHeading(
+                      title: 'Reviews',
+                      onPressed: () => Get.to(() => const ProductReviewScreen()),
                     ),
-                  ),
-                  const SizedBox(height: AppSize.spaceBtwItems),
-
-                  // ===== Description
-                  const SectionHeading(title: 'Description', showActionButton: false),
-                  const SizedBox(height: AppSize.spaceBtwItems),
-
-                  CustomReadMoreText(content: product.description ?? '', trimLines: 2,),
-
-                  const SizedBox(height: AppSize.spaceBtwItems),
-                  const Divider(),
-                  const SizedBox(height: AppSize.spaceBtwItems),
-
-                  // ===== Reviews
-                  SectionHeading(
-                    title: 'Reviews',
-                    onPressed: () => Get.to(() => const ProductReviewScreen()),
-                  ),
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
+      
+        bottomNavigationBar: BottomAddToCart(product: product,),
       ),
-
-      bottomNavigationBar: BottomAddToCart(product: product,),
     );
   }
 }

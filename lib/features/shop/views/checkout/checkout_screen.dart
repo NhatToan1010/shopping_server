@@ -24,65 +24,67 @@ class CheckoutScreen extends StatelessWidget {
     final totalAmount =
         PricingCalculator.calculateTotalPrice(subTotal.value, 'US');
 
-    return Scaffold(
-      // ----- AppBar
-      appBar: const CustomAppbar(
-        title: Text('Order Review'),
-        showBackArrow: true,
-      ),
-
-      // ----- Body
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(AppSize.defaultSpace),
-          child: Column(
-            children: [
-              // ----- List Order Item
-              ListCartItem(showAddRemoveButton: false),
-              SizedBox(height: AppSize.spaceBtwSections),
-
-              // ----- Coupon TextField
-              CouponTextField(),
-              SizedBox(height: AppSize.spaceBtwSections),
-
-              // ----- Billing Section
-              RoundedContainer(
-                padding: EdgeInsets.all(AppSize.medium),
-                showBorder: true,
-                defaultBackgroundColor: true,
-                child: Column(
-                  children: [
-                    // ----- Pricing
-                    BillingAmountSection(),
-                    SizedBox(height: AppSize.spaceBtwItems),
-
-                    // ----- Divider
-                    Divider(),
-                    SizedBox(height: AppSize.spaceBtwItems),
-
-                    // ----- Payment Methods
-                    BillingPaymentSection(),
-                    SizedBox(height: AppSize.spaceBtwItems),
-
-                    // ----- Address
-                    BillingAddressSection(),
-                  ],
-                ),
-              )
-            ],
+    return SafeArea(
+      child: Scaffold(
+        // ----- AppBar
+        appBar: const CustomAppbar(
+          title: Text('Order Review'),
+          showBackArrow: true,
+        ),
+      
+        // ----- Body
+        body: const SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(AppSize.defaultSpace),
+            child: Column(
+              children: [
+                // ----- List Order Item
+                ListCartItem(showAddRemoveButton: false),
+                SizedBox(height: AppSize.spaceBtwSections),
+      
+                // ----- Coupon TextField
+                CouponTextField(),
+                SizedBox(height: AppSize.spaceBtwSections),
+      
+                // ----- Billing Section
+                RoundedContainer(
+                  padding: EdgeInsets.all(AppSize.medium),
+                  showBorder: true,
+                  defaultBackgroundColor: true,
+                  child: Column(
+                    children: [
+                      // ----- Pricing
+                      BillingAmountSection(),
+                      SizedBox(height: AppSize.spaceBtwItems),
+      
+                      // ----- Divider
+                      Divider(),
+                      SizedBox(height: AppSize.spaceBtwItems),
+      
+                      // ----- Payment Methods
+                      BillingPaymentSection(),
+                      SizedBox(height: AppSize.spaceBtwItems),
+      
+                      // ----- Address
+                      BillingAddressSection(),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
-      ),
-
-      // ----- Bottom Navigation
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: AppSize.medium, vertical: AppSize.small),
-        child: ElevatedButton(
-          onPressed: () => totalAmount > 0.0
-              ? orderController.processOrder(totalAmount)
-              : null,
-          child: Text('Check Out \$$totalAmount'),
+      
+        // ----- Bottom Navigation
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: AppSize.medium, vertical: AppSize.small),
+          child: ElevatedButton(
+            onPressed: () => totalAmount > 0.0
+                ? orderController.processOrder(totalAmount)
+                : null,
+            child: Text('Check Out \$$totalAmount'),
+          ),
         ),
       ),
     );

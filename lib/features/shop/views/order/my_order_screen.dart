@@ -14,29 +14,32 @@ class MyOrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(OrderController());
 
-    return Scaffold(
-      // ----- AppBar
-      appBar: const CustomAppbar(title: Text('My Orders'), showBackArrow: true),
+    return SafeArea(
+      child: Scaffold(
+        // ----- AppBar
+        appBar: const CustomAppbar(title: Text('My Orders'), showBackArrow: true),
 
-      // ----- Body
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSize.defaultSpace),
-          child: FutureBuilder(
-            future: controller.getAllUserOrder(),
-            builder: (context, snapshot) {
-              final response = CloudHelperFunctions.checkMultipleStateRecord(snapshot: snapshot);
-              if (response != null) return response;
+        // ----- Body
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(AppSize.defaultSpace),
+            child: FutureBuilder(
+              future: controller.getAllUserOrder(),
+              builder: (context, snapshot) {
+                final response = CloudHelperFunctions.checkMultipleStateRecord(snapshot: snapshot);
+                if (response != null) return response;
 
-              final orders = snapshot.data!;
+                final orders = snapshot.data!;
 
-              return ListView.separated(
-                shrinkWrap: true,
-                itemCount: orders.length,
-                separatorBuilder: (context, index) => const SizedBox(height: AppSize.medium),
-                itemBuilder: (context, index) => ListOrderWidget(order: orders[index]),
-              );
-            },
+                return ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: orders.length,
+                  separatorBuilder: (context, index) => const SizedBox(height: AppSize.medium),
+                  itemBuilder: (context, index) => ListOrderWidget(order: orders[index]),
+                );
+              },
+            ),
           ),
         ),
       ),
