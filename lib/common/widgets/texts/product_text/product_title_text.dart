@@ -23,7 +23,7 @@ class ProductTitle extends StatelessWidget {
       textAlign: textAlign,
       style: smallSize
           ? Theme.of(context).textTheme.labelLarge
-          : Theme.of(context).textTheme.titleLarge,
+          : Theme.of(context).textTheme.titleMedium,
     );
   }
 }
