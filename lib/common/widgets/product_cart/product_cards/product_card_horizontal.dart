@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:shopping_server/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:shopping_server/common/widgets/icons/circular_icon.dart';
 import 'package:shopping_server/common/widgets/images/rounded_rect_image.dart';
+import 'package:shopping_server/common/widgets/product_cart/product_cards/product_card_add_to_cart_button.dart';
 import 'package:shopping_server/common/widgets/texts/product_text/product_brand_text.dart';
 import 'package:shopping_server/common/widgets/texts/product_text/product_price_text.dart';
 import 'package:shopping_server/common/widgets/texts/product_text/product_title_text.dart';
@@ -33,17 +34,18 @@ class ProductCardHorizontal extends StatelessWidget {
         padding: const EdgeInsets.all(0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppSize.productImageRadius),
-            color: isDark ? AppPallete.darkerGrey : AppPallete.greyColor,
+            color: isDark ? AppPallete.backgroundDark : AppPallete.backgroundLight,
+            border: Border.all(color: isDark ? AppPallete.softGrey : AppPallete.darkGrey, width: 2),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // --- Image Thumbnail
             RoundedContainer(
               height: double.infinity,
               width: 120,
-              padding: const EdgeInsets.all(AppSize.small),
               defaultBackgroundColor: false,
-              backgroundColor: isDark ? AppPallete.darkerGrey : AppPallete.greyColor,
+              backgroundColor: isDark ? AppPallete.backgroundDark : AppPallete.backgroundLight,
               child: Stack(
                 children: [
                   // ----- Product Image
@@ -52,7 +54,7 @@ class ProductCardHorizontal extends StatelessWidget {
                     width: 120,
                     child: RoundedRectImage(
                       imageUrl: product.thumbnail,
-                      backgroundColor: AppPallete.softGrey,
+                      backgroundColor: AppPallete.greyColor,
                       isNetworkImage: true,
                       fit: BoxFit.cover,
                     ),
@@ -61,12 +63,12 @@ class ProductCardHorizontal extends StatelessWidget {
                   // ----- Sale Tag
                   if (product.salePrice > 0)
                     Positioned(
-                      top: 8,
+                      top: 14,
                       left: 8,
                       child: RoundedContainer(
                         width: 40,
                         radius: AppSize.small,
-                        padding: const EdgeInsets.all(AppSize.extraSmall),
+
                         backgroundColor: Colors.amberAccent,
                         child: Center(
                           child: Text(
@@ -95,7 +97,7 @@ class ProductCardHorizontal extends StatelessWidget {
             SizedBox(
               width: 175,
               child: Padding(
-                padding: const EdgeInsets.only(left: AppSize.small, top: AppSize.small, bottom: AppSize.extraSmall),
+                padding: const EdgeInsets.only(left: AppSize.small, top: AppSize.small),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +109,6 @@ class ProductCardHorizontal extends StatelessWidget {
                       children: [
                         // ----- Product Name
                         ProductTitle(title: product.title ?? '', smallSize: false,),
-                        const SizedBox(height: AppSize.small),
 
                         // ----- Brand Name
                         ProductBrandText(brandName: product.brand!.brandName ?? '')
@@ -119,27 +120,22 @@ class ProductCardHorizontal extends StatelessWidget {
                     // ----- Product Price & Add to cart Button
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         // --- Product Prices
                         Flexible(child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             if (product.productType == ProductType.single.toString() && product.salePrice > 0)
-                              Padding(
-                                padding: const EdgeInsets.only(left: AppSize.small),
-                                child: ProductPriceText(
-                                  currencySign: '\$',
-                                  price: product.price.toString(),
-                                  isLarge: false,
-                                  lineThrough: true,
-                                ),
+                              ProductPriceText(
+                                currencySign: '\$',
+                                price: product.price.toString(),
+                                isLarge: false,
+                                lineThrough: true,
                               ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: AppSize.small, bottom: AppSize.small),
-                              child: ProductPriceText(
-                                currencySign: '',
-                                price: controller.getProductPrice(product),
-                              ),
+                            ProductPriceText(
+                              currencySign: '',
+                              price: controller.getProductPrice(product),
                             ),
                           ],
                         ),),
@@ -147,19 +143,7 @@ class ProductCardHorizontal extends StatelessWidget {
                         const SizedBox(width: AppSize.medium),
 
                         // --- Add to cart button
-                        IconButton(
-                          style: IconButton.styleFrom(
-                            foregroundColor: AppPallete.whiteColor,
-                            backgroundColor:
-                                AppPallete.secondary.withOpacity(0.8),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  AppSize.borderRadiusMedium),
-                            ),
-                          ),
-                          onPressed: () {},
-                          icon: const Icon(Iconsax.add),
-                        ),
+                        ProductCardAddToCartButton(product: product),
                       ],
                     )
                   ],
