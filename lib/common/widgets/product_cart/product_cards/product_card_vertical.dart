@@ -40,7 +40,8 @@ class ProductCardVertical extends StatelessWidget {
         decoration: BoxDecoration(
             boxShadow: [isDark ? ShadowStyle.darkProductShadow : ShadowStyle.lightProductShadow],
             borderRadius: BorderRadius.circular(AppSize.productImageRadius),
-            color: isDark ? AppPallete.backgroundDark : AppPallete.softGrey,
+            color: isDark ? AppPallete.backgroundDark : AppPallete.backgroundLight,
+            border: Border.all(color: isDark ? AppPallete.softGrey : AppPallete.darkGrey, width: 2)
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +50,7 @@ class ProductCardVertical extends StatelessWidget {
 
             // ----- Product Image -----
             RoundedContainer(
-              height: 170,
+              height: 155,
               width: double.infinity,
               backgroundColor: isDark ? AppPallete.darkGrey : AppPallete.greyColor,
               child: Stack(
@@ -60,6 +61,7 @@ class ProductCardVertical extends StatelessWidget {
                     backgroundColor: isDark ? AppPallete.darkGrey : AppPallete.greyColor,
                     fit: BoxFit.cover,
                     isNetworkImage: true,
+
                   ),
 
                   // ----- Discount -----
@@ -94,6 +96,7 @@ class ProductCardVertical extends StatelessWidget {
               ),
             ),
 
+            Divider(color: isDark ? AppPallete.softGrey : AppPallete.darkGrey,),
             // ----- Product Details -----
             Padding(
               padding: const EdgeInsets.all(AppSize.small),
@@ -120,6 +123,7 @@ class ProductCardVertical extends StatelessWidget {
                 // ----- Product Price
                 Flexible(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (productIndex!.productType == ProductType.single.toString() && productIndex!.salePrice > 0)
                         Padding(
@@ -132,7 +136,7 @@ class ProductCardVertical extends StatelessWidget {
                           ),
                         ),
                       Padding(
-                        padding: const EdgeInsets.only(left: AppSize.small, bottom: AppSize.small),
+                        padding: const EdgeInsets.only(left: AppSize.small, bottom: AppSize.extraSmall),
                         child: ProductPriceText(
                           currencySign: '',
                           price: controller.getProductPrice(productIndex!),
