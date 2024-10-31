@@ -11,7 +11,6 @@ class RoundedRectImage extends StatelessWidget {
     required this.imageUrl,
     this.width,
     this.height,
-    this.borderColor = AppPallete.transparentColor,
     this.padding,
     this.margin,
     this.onTap,
@@ -23,7 +22,7 @@ class RoundedRectImage extends StatelessWidget {
     this.imgWidth,
     this.imgHeight, 
     this.halfRadius = false,
-    this.boxShadow,
+    this.boxShadow, this.border,
   });
 
   final String imageUrl;
@@ -32,11 +31,11 @@ class RoundedRectImage extends StatelessWidget {
   final bool isNetworkImage;
   final bool halfRadius;
   final BoxFit? fit;
-  final Color borderColor;
   final Color? backgroundColor, imageColor;
   final EdgeInsetsGeometry? padding, margin;
   final VoidCallback? onTap;
   final List<BoxShadow>? boxShadow;
+  final BoxBorder? border;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,7 @@ class RoundedRectImage extends StatelessWidget {
         padding: padding,
         decoration: BoxDecoration(
           color: backgroundColor,
-          border: Border.all(color: borderColor, width: 2),
+          border: border,
           borderRadius: BorderRadius.circular(borderRadius),
           boxShadow: boxShadow,
         ),
