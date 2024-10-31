@@ -32,6 +32,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   // ===== Appbar
                   const HomeAppbar(),
+                  const SizedBox(height: AppSize.small),
 
                   // ===== Searchbar
                   SearchbarContainer(onPressed: () {}),
