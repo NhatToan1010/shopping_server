@@ -9,7 +9,7 @@ class OrderModel {
   final String id;
   final String userId;
   final String paymentMethod;
-  final double totalAmount;
+  final num totalAmount;
   final OrderStatus orderStatus;
   final DateTime orderDate;
   final DateTime? deliveryDate;
@@ -73,7 +73,7 @@ class OrderModel {
         id: data["Id"] as String,
         userId: data["UserId"] as String,
         paymentMethod: data["PaymentMethod"] as String,
-        totalAmount: data["TotalAmount"] as double,
+        totalAmount: (data["TotalAmount"]) * 1.0,
         orderStatus: OrderStatus.values.firstWhere((e) => e.toString() == data["OrderStatus"]),
         orderDate: (data["OrderDate"] as Timestamp).toDate(),
         deliveryAddress: AddressModel.fromMap(data["DeliveryAddress"] as Map<String, dynamic>),
