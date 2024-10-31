@@ -4,7 +4,7 @@ class CartModel {
   String variationId;
   String productName;
   int quantity;
-  double price;
+  num price;
   String? image;
   String? brandName;
   Map<String, String>? selectedVariation;
@@ -45,7 +45,7 @@ class CartModel {
       image: data["ProductImage"] as String,
       productName: data["ProductName"] as String,
       variationId: data["VariationId"] as String,
-      price: data["Price"] as double,
+      price: (data["Price"]) * 1.0,
       selectedVariation: data["SelectedVariation"] != null
           ? Map<String, String>.from(data["SelectedVariation"])
           : null,
