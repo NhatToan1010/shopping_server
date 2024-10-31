@@ -32,7 +32,7 @@ class VerticalImageText extends StatelessWidget {
               height: 56,
               imgWidth: 40,
               imgHeight: 40,
-              padding: const EdgeInsets.all(AppSize.small),
+              padding: const EdgeInsets.all(AppSize.extraSmall),
               imageUrl: image,
               isNetworkImage: true,
               backgroundColor: AppPallete.lightGrey,
@@ -40,7 +40,7 @@ class VerticalImageText extends StatelessWidget {
             const SizedBox(height: AppSize.spaceBtwItems / 2),
             // Category Title
             SizedBox(
-              width: 55,
+              width: 70,
               child: Text(
                 title,
                 style: Theme.of(context)
