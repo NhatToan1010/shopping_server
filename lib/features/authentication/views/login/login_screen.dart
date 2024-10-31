@@ -24,10 +24,13 @@ class LoginScreen extends StatelessWidget {
         child: Padding(
           padding: SpacingStyles.paddingWithAppbarHeight,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Title & Subtitle
-              const FormTitle(title: LocalTexts.loginTitle, subtitle: LocalTexts.loginSubtitle,),
+              const FormTitle(
+                title: LocalTexts.loginTitle,
+                subtitle: LocalTexts.loginSubtitle,
+              ),
               const SizedBox(height: AppSize.spaceBtwSections),
 
               // Form
