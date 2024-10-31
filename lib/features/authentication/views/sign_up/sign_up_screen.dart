@@ -20,7 +20,7 @@ class SignUpScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(AppSize.defaultSpace),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Title
               FormTitle(title: LocalTexts.signUpTitle, subtitle: LocalTexts.signUpSubtitle),
