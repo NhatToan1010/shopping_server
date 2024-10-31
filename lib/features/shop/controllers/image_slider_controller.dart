@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopping_server/utils/constants/colors.dart';
+import 'package:shopping_server/utils/device/device_utility.dart';
 
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/sizes.dart';
@@ -41,19 +43,17 @@ class ImageSliderController extends GetxController {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(AppSize.defaultSpace),
-              child: SizedBox(
-                width: double.infinity,
-                height: 450,
-                child: CachedNetworkImage(imageUrl: image),
-              ),
+            SizedBox(
+              width: double.infinity,
+              height: DeviceUtils.getScreenHeight() * 0.5,
+              child: CachedNetworkImage(imageUrl: image),
             ),
+            const SizedBox(height: AppSize.small),
             Align(
               alignment: Alignment.bottomCenter,
               child: SizedBox(
                 width: 100,
-                child: OutlinedButton(
+                child: TextButton(
                   onPressed: () => Get.back(),
                   child: const Text('Close'),
                 ),
