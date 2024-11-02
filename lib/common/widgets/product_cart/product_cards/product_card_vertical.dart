@@ -61,7 +61,7 @@ class ProductCardVertical extends StatelessWidget {
                     backgroundColor: isDark ? AppPallete.darkGrey : AppPallete.greyColor,
                     fit: BoxFit.cover,
                     isNetworkImage: true,
-
+                    halfRadius: true,
                   ),
 
                   // ----- Discount -----
@@ -96,7 +96,6 @@ class ProductCardVertical extends StatelessWidget {
               ),
             ),
 
-            Divider(color: isDark ? AppPallete.softGrey : AppPallete.darkGrey,),
             // ----- Product Details -----
             Padding(
               padding: const EdgeInsets.all(AppSize.small),
@@ -104,6 +103,7 @@ class ProductCardVertical extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Divider(color: isDark ? AppPallete.softGrey : AppPallete.darkGrey, ),
                   // ----- Product Name -----
                   ProductTitle(title: productIndex!.title, smallSize: false),
                   const SizedBox(height: AppSize.extraSmall),

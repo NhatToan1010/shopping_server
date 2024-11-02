@@ -88,7 +88,7 @@ class ProductImageSlider extends StatelessWidget {
                         boxShadow: [ShadowStyle.lightProductShadow],
                         border: Border.all(color: selectedImage ? AppPallete.darkGrey : AppPallete.transparentColor,),
                         width: 80,
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                         backgroundColor: isDark ? AppPallete.darkerGrey : AppPallete.lightGrey,
                         imageUrl: images[index],
                         isNetworkImage: true,

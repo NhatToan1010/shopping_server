@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_server/common/widgets/images/rounded_rect_image.dart';
 import 'package:shopping_server/features/shop/models/brand_model.dart';
 
 import '../../../utils/constants/colors.dart';
@@ -10,7 +11,8 @@ import 'brand_card.dart';
 class BrandShowcase extends StatelessWidget {
   const BrandShowcase({
     super.key,
-    required this.images, required this.brand,
+    required this.images,
+    required this.brand,
   });
 
   final List<String> images;
@@ -18,17 +20,20 @@ class BrandShowcase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return RoundedContainer(
       showBorder: true,
       borderColor: AppPallete.darkGrey,
       backgroundColor: AppPallete.transparentColor,
-      margin: const EdgeInsets.only(bottom: AppSize.defaultSpace),
       padding: const EdgeInsets.all(AppSize.medium),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // ===== Brand with product count
-          BrandCard(brand: brand!, showBorder: false),
+          Text(
+            '  ${brand!.brandName} Top Products',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: AppSize.spaceBtwItems),
 
           // ===== Brand top 3 product images
           Row(
@@ -43,7 +48,7 @@ class BrandShowcase extends StatelessWidget {
   Widget brandTopProductImage(String image, context) {
     return Expanded(
       child: RoundedContainer(
-        height: 100,
+        height: 140,
         radius: 10,
         showBorder: true,
         backgroundColor: HelperFunctions.isDarkMode(context)
@@ -51,9 +56,11 @@ class BrandShowcase extends StatelessWidget {
             : AppPallete.whiteColor,
         margin: const EdgeInsets.all(AppSize.extraSmall),
         padding: const EdgeInsets.all(AppSize.small),
-        child: Image(
-          fit: BoxFit.contain,
-          image: AssetImage(image),
+        child: RoundedRectImage(
+          imageUrl: image,
+          width: double.infinity,
+          isNetworkImage: true,
+          fit: BoxFit.cover,
         ),
       ),
     );

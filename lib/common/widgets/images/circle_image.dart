@@ -16,7 +16,10 @@ class CircleImage extends StatelessWidget {
     required this.imageUrl,
     this.fit = BoxFit.contain,
     this.padding,
-    this.margin, this.imgWidth, this.imgHeight,
+    this.margin,
+    this.imgWidth,
+    this.imgHeight,
+    this.onTap,
   });
 
   final double? width, height, imgWidth, imgHeight;
@@ -25,41 +28,45 @@ class CircleImage extends StatelessWidget {
   final String imageUrl;
   final BoxFit? fit;
   final EdgeInsetsGeometry? padding, margin;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final isDark = HelperFunctions.isDarkMode(context);
 
-    return Container(
-      padding: padding,
-      margin: margin,
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        color: backgroundColor ??
-            (isDark ? AppPallete.blackColor : AppPallete.whiteColor),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: isNetworkImage
-            ? CachedNetworkImage(
-                width: imgWidth,
-                height: imgHeight,
-                imageUrl: imageUrl,
-                fit: fit,
-                color: imageColor,
-                progressIndicatorBuilder: (context, url, downloadIndicator) =>
-                    const CustomShimmerEffect(width: 55, height: 55),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              )
-            : Image(
-                width: imgWidth,
-                height: imgHeight,
-                image: AssetImage(imageUrl),
-                color: imageColor,
-                fit: fit,
-              ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: padding,
+        margin: margin,
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(500),
+          color: backgroundColor ??
+              (isDark ? AppPallete.blackColor : AppPallete.whiteColor),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(500),
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  width: imgWidth,
+                  height: imgHeight,
+                  imageUrl: imageUrl,
+                  fit: fit,
+                  color: imageColor,
+                  progressIndicatorBuilder: (context, url, downloadIndicator) =>
+                      const CustomShimmerEffect(width: 55, height: 55),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image(
+                  width: imgWidth,
+                  height: imgHeight,
+                  image: AssetImage(imageUrl),
+                  color: imageColor,
+                  fit: fit,
+                ),
+        ),
       ),
     );
   }

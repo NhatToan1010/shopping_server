@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_server/utils/constants/colors.dart';
+import 'package:shopping_server/utils/helpers/helper_functions.dart';
 
 import '../../../../../common/widgets/brand/brand_showcase.dart';
 import '../../../../../common/widgets/layouts/grid_layout.dart';
@@ -24,9 +26,9 @@ class BrandAndProductDisplay extends StatelessWidget {
         // ----- Brands Showcase -----
         BrandShowcase(
           brand: products.map((item) => item.brand).elementAt(index),
-          images: products.map((item) => item.thumbnail).toList(),
+          images: products.map((item) => item.thumbnail).take(3).toList(),
         ),
-        const SizedBox(height: AppSize.spaceBtwSections),
+        const SizedBox(height: AppSize.spaceBtwItems),
 
         // ----- Product you might like -----
         const SectionHeading(
@@ -43,6 +45,9 @@ class BrandAndProductDisplay extends StatelessWidget {
             productIndex: products[index],
           ),
         ),
+
+
+        const SizedBox(height: AppSize.spaceBtwSections),
       ],
     );
   }

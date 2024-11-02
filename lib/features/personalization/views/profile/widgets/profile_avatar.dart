@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:shopping_server/features/personalization/controllers/user_controller.dart';
+import 'package:shopping_server/features/shop/controllers/image_slider_controller.dart';
 import 'package:shopping_server/utils/popups/shimmers/default_shimmer.dart';
 
 import '../../../../../common/widgets/images/circle_image.dart';
@@ -15,6 +18,7 @@ class ProfileAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = UserController.instance;
+    final imageController = Get.put(ImageSliderController());
 
     return Column(
       children: [
@@ -27,7 +31,9 @@ class ProfileAvatar extends StatelessWidget {
                   imageUrl: image,
                   width: 55,
                   height: 55,
-                  isNetworkImage: networkImage.isEmpty,
+                  isNetworkImage: networkImage.isNotEmpty,
+                  fit: BoxFit.cover,
+                  onTap: () => imageController.showEnlargedImage(image),
                 );
         }),
         const SizedBox(height: AppSize.spaceBtwItems / 2),

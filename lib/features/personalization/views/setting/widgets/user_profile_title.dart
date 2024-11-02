@@ -24,10 +24,11 @@ class UserProfileTitle extends StatelessWidget {
         imageUrl: controller.user.value.profilePicture.isEmpty
             ? LocalImages.avatar2
             : controller.user.value.profilePicture,
-        width: 48,
-        height: 48,
+        width: 55,
+        height: 55,
         padding: const EdgeInsets.all(0),
-        isNetworkImage: controller.user.value.profilePicture.isEmpty,
+        isNetworkImage: controller.user.value.profilePicture.isNotEmpty,
+        fit: BoxFit.cover,
       ),
 
       // ----- User Firstname
