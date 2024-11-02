@@ -183,11 +183,20 @@ class ProductRepository extends GetxController {
 
         // Assign image url to item.image attribute
         item.thumbnail = url;
+        
+        // Brand Images
+        if (item.brand != null) {
+          final assetImage = await storage.getImageDataFromAssets(item.brand!.image);
+          
+          final url = await storage.uploadImageData('Products/Brands', item.brand!.image, assetImage);
+
+          item.brand!.image = url;
+        }
 
         // Product list of images
         if (item.images != null && item.images!.isNotEmpty) {
           List<String> imagesUrl = [];
-          for (var image in imagesUrl) {
+          for (var image in item.images!) {
             final assetImage = await storage.getImageDataFromAssets(image);
 
             final url = await storage.uploadImageData(
@@ -202,14 +211,20 @@ class ProductRepository extends GetxController {
         // Upload variation images
         if (item.productType == 'ProductType.variable') {
           List<String> variations = [];
-          for (var value in variations) {
+          List<String> listImages = item.productVariation!.map((item) => item.image).toList();
+          for (var value in listImages) {
             final assetsImage = await storage.getImageDataFromAssets(value);
 
             final url = await storage.uploadImageData(
-                'Products/Images', value, assetsImage);
+                'Products/Variations', value, assetsImage);
 
             variations.add(url);
           }
+
+          for (var index = 0; index < item.productVariation!.length; index++) {
+            item.productVariation![index].image = variations[index];
+          }
+          
         }
 
         // Store item to Firestore
