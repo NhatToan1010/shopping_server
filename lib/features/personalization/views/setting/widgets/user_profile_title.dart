@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shopping_server/data/repositories/authentication_repository.dart';
 import 'package:shopping_server/features/personalization/controllers/user_controller.dart';
 import 'package:shopping_server/features/personalization/views/profile/profile_screen.dart';
 
@@ -41,7 +42,7 @@ class UserProfileTitle extends StatelessWidget {
       ),
       // ----- Email
       subtitle: Text(
-        controller.user.value.email,
+        AuthenticationRepository.instance.authUser!.email ?? '',
         style: Theme.of(context)
             .textTheme
             .bodyMedium!
