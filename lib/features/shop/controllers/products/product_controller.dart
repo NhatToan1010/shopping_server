@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:shopping_server/data/repositories/brand_repository.dart';
 import 'package:shopping_server/data/repositories/product_repository.dart';
+import 'package:shopping_server/features/shop/models/brand_model.dart';
 import 'package:shopping_server/utils/popups/loader.dart';
 
 import '../../models/products/product_model.dart';
@@ -9,6 +11,7 @@ class ProductController extends GetxController {
 
   // Variables
   final _repo = Get.put(ProductRepository());
+  final brandRepo = Get.put(BrandRepository());
   RxBool isLoading = false.obs;
   RxList<ProductModel> listProduct = <ProductModel>[].obs;
   RxList<ProductModel> featureProducts = <ProductModel>[].obs;
@@ -79,5 +82,16 @@ class ProductController extends GetxController {
 
   String getStockStatus(int stock) {
     return stock > 0 ? 'In Stock' : 'Out of Stock';
+  }
+
+  Future<BrandModel> getBrandByProduct(String productBrandId) async{
+    try {
+      final brands = await brandRepo.getBrandByProduct(productBrandId);
+
+      return brands;
+    } catch (e) {
+      CustomLoader.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+      return BrandModel.empty();
+    }
   }
 }
