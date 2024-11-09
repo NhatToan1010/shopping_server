@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_server/common/widgets/appbar/custom_appbar.dart';
 import 'package:shopping_server/features/shop/models/order_model.dart';
-import 'package:shopping_server/features/shop/views/cart/widgets/list_cart_item.dart';
 import 'package:shopping_server/utils/constants/sizes.dart';
 
 import '../../../../../common/widgets/product_cart/carts/cart_item.dart';

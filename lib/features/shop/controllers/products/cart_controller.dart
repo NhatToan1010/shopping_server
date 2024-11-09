@@ -5,7 +5,6 @@ import 'package:shopping_server/utils/constants/enums.dart';
 import 'package:shopping_server/utils/popups/loader.dart';
 import 'package:shopping_server/utils/storage/storage_utility.dart';
 
-import '../../../../utils/popups/shimmers/default_shimmer.dart';
 import '../../models/cart_model.dart';
 
 class CartController extends GetxController {

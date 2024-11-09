@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shopping_server/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:shopping_server/features/shop/models/order_model.dart';

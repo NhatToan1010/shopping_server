@@ -1,11 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shopping_server/common/widgets/images/circle_image.dart';
 import 'package:shopping_server/common/widgets/images/rounded_rect_image.dart';
 import 'package:shopping_server/common/widgets/texts/product_text/product_brand_text.dart';
 import 'package:shopping_server/features/shop/controllers/products/product_controller.dart';
-import 'package:shopping_server/utils/helpers/cloud_helper_functions.dart';
 import 'package:shopping_server/utils/helpers/helper_functions.dart';
 
 import '../../../../../common/widgets/custom_shapes/containers/rounded_container.dart';
@@ -13,7 +9,6 @@ import '../../../../../common/widgets/texts/product_text/product_price_text.dart
 import '../../../../../common/widgets/texts/product_text/product_title_text.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
-import '../../../models/brand_model.dart';
 import '../../../models/products/product_model.dart';
 
 class ProductMetaData extends StatelessWidget {

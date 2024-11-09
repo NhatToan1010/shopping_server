@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:shopping_server/features/personalization/controllers/user_controller.dart';
 import 'package:shopping_server/features/shop/controllers/image_slider_controller.dart';
 import 'package:shopping_server/utils/popups/shimmers/default_shimmer.dart';
