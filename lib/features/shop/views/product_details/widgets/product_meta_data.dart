@@ -38,9 +38,7 @@ class ProductMetaData extends StatelessWidget {
                     padding: const EdgeInsets.all(AppSize.extraSmall),
                     backgroundColor: Colors.amberAccent,
                     child: Center(
-                      child: Text(
-                        '${controller.getSaleDiscount(product.salePrice, product.price)}%' ??
-                            '',
+                      child: Text('${controller.getSaleDiscount(product.salePrice, product.price)}%',
                         // Fetch Data
                         style: Theme.of(context)
                             .textTheme
@@ -109,7 +107,8 @@ class ProductMetaData extends StatelessWidget {
                   );
                 }),
             const SizedBox(width: AppSize.small),
-            ProductBrandText(brandName: product.brand!.brandName, smallSize: false),
+            ProductBrandText(
+                brandName: product.brand!.brandName, smallSize: false),
           ],
         ),
       ],
