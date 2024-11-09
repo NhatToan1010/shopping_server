@@ -44,7 +44,6 @@ class BrandAndProductDisplay extends StatelessWidget {
           ),
         ),
 
-
         const SizedBox(height: AppSize.spaceBtwSections),
       ],
     );
