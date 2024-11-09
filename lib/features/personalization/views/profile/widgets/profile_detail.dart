@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shopping_server/data/repositories/authentication_repository.dart';
 import 'package:shopping_server/features/personalization/controllers/user_controller.dart';
 import 'package:shopping_server/features/personalization/views/profile/widgets/change_name_screen.dart';
 import 'package:shopping_server/features/personalization/views/profile/widgets/profile_menu.dart';
@@ -57,14 +58,8 @@ class ProfileDetail extends StatelessWidget {
 
         // ===== List Menus
         ProfileMenu(
-          title: 'User ID',
-          value: controller.user.value.id,
-          icon: Iconsax.copy,
-          onTap: () {}, leadingIcon: Iconsax.personalcard,
-        ),
-        ProfileMenu(
           title: 'E-Mail',
-          value: controller.user.value.email,
+          value: AuthenticationRepository.instance.authUser!.email ?? '',
           leadingIcon: Iconsax.direct_down,
           onTap: () {},
         ),
@@ -72,12 +67,6 @@ class ProfileDetail extends StatelessWidget {
           title: 'Phone Number',
           value: controller.user.value.phoneNumber,
           leadingIcon: Iconsax.mobile,
-          onTap: () {},
-        ),
-        ProfileMenu(
-          title: 'Date of Birth',
-          value: '10 Oct 2002',
-          leadingIcon: Iconsax.calendar,
           onTap: () {},
         ),
 
