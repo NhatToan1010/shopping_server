@@ -35,7 +35,11 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: AppSize.small),
 
                   // ===== Searchbar
-                  SearchbarContainer(onPressed: () {}),
+                  SearchbarContainer(
+                      onPressed: () => Get.to(() => AllProductViewScreen(
+                            title: 'All Product',
+                            futureMethod: controller.fetchAllFeatureData(),
+                          ))),
                   const SizedBox(height: AppSize.spaceBtwSections),
 
                   // ===== Categories
@@ -78,11 +82,11 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   // ===== Title
                   SectionHeading(
-                      title: 'Popular Products',
-                      onPressed: () => Get.to(() => AllProductViewScreen(
-                        title: 'Popular Products',
-                        futureMethod: controller.fetchAllFeatureData(),
-                      )),
+                    title: 'Popular Products',
+                    onPressed: () => Get.to(() => AllProductViewScreen(
+                          title: 'Popular Products',
+                          futureMethod: controller.fetchAllFeatureData(),
+                        )),
                   ),
                   const SizedBox(height: AppSize.spaceBtwItems),
 
@@ -93,16 +97,16 @@ class HomeScreen extends StatelessWidget {
                     }
                     if (controller.featureProducts.isEmpty) {
                       return const Center(child: Text('No Data Found!'));
-                    }
-                    else {
+                    } else {
                       return GridLayout(
                         itemCount: controller.featureProducts.length,
                         mainAxisExtent: AppSize.productVerticalAxisExtent,
-                        itemBuilder: (_, index) => ProductCardVertical(productIndex: controller.featureProducts[index],),
+                        itemBuilder: (_, index) => ProductCardVertical(
+                          productIndex: controller.featureProducts[index],
+                        ),
                       );
                     }
                   }),
-
                 ],
               ),
             ),
