@@ -27,15 +27,8 @@ class AddressController extends GetxController {
   final state = TextEditingController();
   final country = TextEditingController();
 
-  // final userController = Get.put(UserController());
+  GlobalKey<FormState> addressFormKey = GlobalKey<FormState>();
 
-  final GlobalKey<FormState> addressFormKey = GlobalKey<FormState>();
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   fetchAllUserAddress();
-  // }
 
   Future<List<AddressModel>> fetchAllUserAddress() async {
     try {
@@ -131,8 +124,6 @@ class AddressController extends GetxController {
       FullScreenLoader.stopLoading();
       CustomLoader.errorSnackBar(
           title: 'Address Controller Error: ${e.toString()}');
-    } finally {
-      FullScreenLoader.stopLoading();
     }
   }
 
