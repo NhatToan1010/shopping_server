@@ -28,7 +28,9 @@ class TabCategory extends StatelessWidget {
               // --- Get Sub Category from Main Category ex: Sport => Shoes, Tools
               future: controller.getSubCategory(category.id),
               builder: (context, subCategorySnapshot) {
-                final subCategoryResponse = CloudHelperFunctions.checkMultipleStateRecord(snapshot: subCategorySnapshot);
+                final subCategoryResponse =
+                    CloudHelperFunctions.checkMultipleStateRecord(
+                        snapshot: subCategorySnapshot);
                 if (subCategoryResponse != null) return subCategoryResponse;
 
                 // --- Get a list of sub category
@@ -38,6 +40,9 @@ class TabCategory extends StatelessWidget {
                 return ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
+                  itemCount: subCategories.length,
+                  separatorBuilder: (context, _) =>
+                      const SizedBox(height: AppSize.small),
                   itemBuilder: (context, index) {
                     return FutureBuilder(
                         // --- Get all product from each sub category
@@ -50,11 +55,15 @@ class TabCategory extends StatelessWidget {
                           final products = productSnapshot.data!;
 
                           // --- Return UI of each products for every sub category items
-                          return BrandAndProductDisplay(products: products, index: index);
+                          return ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: products.length,
+                              itemBuilder: (context, index) {
+                                return BrandAndProductDisplay(products: products, index: index);
+                              });
                         });
                   },
-                  separatorBuilder: (context, _) => const SizedBox(height: AppSize.small),
-                  itemCount: subCategories.length,
                 );
               }),
         )
