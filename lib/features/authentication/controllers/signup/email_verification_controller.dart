@@ -11,6 +11,8 @@ import 'package:shopping_server/utils/popups/loader.dart';
 class EmailVerificationController extends GetxController {
   static EmailVerificationController get instance => Get.find();
 
+  final RxBool isTimerSet = true.obs;
+
   // Send email whenever Email Verification Screen appear & Set timer for auto redirect
   @override
   void onInit() {
@@ -33,10 +35,12 @@ class EmailVerificationController extends GetxController {
 
   // Timer to automatically redirect on Email verification
   _setTimerForAutoRedirect() {
-    Timer.periodic(const Duration(seconds: 1), (timer) async {
-      await FirebaseAuth.instance.currentUser?.reload();
-      await checkEmailVerificationStatus();
-    });
+    if (isTimerSet.value) {
+      Timer.periodic(const Duration(seconds: 30), (timer) async {
+        await FirebaseAuth.instance.currentUser?.reload();
+        await checkEmailVerificationStatus();
+      });
+    }
   }
 
   // Manually checked if Email verified
@@ -44,6 +48,8 @@ class EmailVerificationController extends GetxController {
     final user = FirebaseAuth.instance.currentUser;
 
     if (user != null && user.emailVerified) {
+      isTimerSet.value = false;
+
       Get.off(() => SuccessScreen(
           title: LocalTexts.emailVerificationSuccessTitle,
           subtitle: LocalTexts.emailVerificationSuccessSubtitle,
