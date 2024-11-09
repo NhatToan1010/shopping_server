@@ -32,7 +32,7 @@ class BrandRepository extends GetxController {
     }
   }
 
-  Future<BrandModel> getBrandImageByProductId(String productBrandId) async {
+  Future<BrandModel> getBrandByProduct(String productBrandId) async {
     try {
       final brand = await _db
           .collection("Brands").doc(productBrandId)
