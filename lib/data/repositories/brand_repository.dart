@@ -19,14 +19,28 @@ class BrandRepository extends GetxController {
       final snapshot = await _db.collection("Brands").get();
 
       // Convert snapshot to Product Model and return it
-      final list = snapshot.docs.map((document) => BrandModel.fromSnapshot(document)).toList();
+      final list = snapshot.docs
+          .map((document) => BrandModel.fromSnapshot(document))
+          .toList();
       return list;
     } on FirebaseException catch (e) {
       throw LocalFirebaseExceptions(e.code).toString();
-    } on PlatformException catch(e) {
+    } on PlatformException catch (e) {
       throw LocalPlatformExceptions(e.code).toString();
     } catch (e) {
       throw e.toString();
+    }
+  }
+
+  Future<BrandModel> getBrandImageByProductId(String productBrandId) async {
+    try {
+      final brand = await _db
+          .collection("Brands").doc(productBrandId)
+          .get();
+
+      return BrandModel.fromSnapshot(brand);
+    } catch (e) {
+      throw 'Brand Repository Error: ${e.toString()}';
     }
   }
 
@@ -42,7 +56,8 @@ class BrandRepository extends GetxController {
         final file = await storage.getImageDataFromAssets(item.image);
 
         // Upload image to Firebase Storage and get its URL
-        final url = await storage.uploadImageData('Brands', item.brandName, file);
+        final url =
+            await storage.uploadImageData('Brands', item.brandName, file);
 
         // Assign image url to item.image attribute
         item.image = url;
@@ -52,7 +67,7 @@ class BrandRepository extends GetxController {
       }
     } on FirebaseException catch (e) {
       throw LocalFirebaseExceptions(e.code).toString();
-    } on PlatformException catch(e) {
+    } on PlatformException catch (e) {
       throw LocalPlatformExceptions(e.code).toString();
     } catch (e) {
       throw e.toString();
