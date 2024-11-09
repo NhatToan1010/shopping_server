@@ -36,9 +36,7 @@ class ListCartItem extends StatelessWidget {
 
               return Column(
                 children: [
-                  CartItem(
-                    cartItem: listItem[index],
-                  ),
+                  CartItem(cartItem: listItem[index]),
                   if (showAddRemoveButton)
                     const SizedBox(height: AppSize.extraSmall),
                   if (showAddRemoveButton)
@@ -53,17 +51,20 @@ class ListCartItem extends StatelessWidget {
                             // ----- Add & Remove Button
                             ProductQuantityWithAddRemoveButton(
                               quantity: cartItem.quantity,
-                              add: () => controller.increaseProductQuantity(cartItem),
-                              remove: () => controller.reduceProductQuantity(cartItem),
+                              add: () =>
+                                  controller.increaseProductQuantity(cartItem),
+                              remove: () =>
+                                  controller.reduceProductQuantity(cartItem),
                             ),
                           ],
                         ),
 
                         // ----- Price
-                        ProductPriceText(price: (cartItem.price * cartItem.quantity).toStringAsFixed(1))
+                        ProductPriceText(
+                            price: (cartItem.price * cartItem.quantity)
+                                .toStringAsFixed(1))
                       ],
                     ),
-
                   const SizedBox(height: AppSize.small),
                   const Divider()
                 ],
