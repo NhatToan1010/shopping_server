@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_server/utils/constants/colors.dart';
 import 'package:shopping_server/utils/device/device_utility.dart';
 
 import '../../../utils/constants/enums.dart';

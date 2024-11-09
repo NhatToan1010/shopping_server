@@ -28,6 +28,7 @@ class CartItem extends StatelessWidget {
           backgroundColor: HelperFunctions.isDarkMode(context)
               ? AppPallete.darkGrey
               : AppPallete.greyColor,
+          isNetworkImage: true,
         ),
         const SizedBox(width: AppSize.spaceBtwItems),
 

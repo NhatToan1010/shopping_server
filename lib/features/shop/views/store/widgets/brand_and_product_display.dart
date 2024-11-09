@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_server/utils/constants/colors.dart';
-import 'package:shopping_server/utils/helpers/helper_functions.dart';
 
 import '../../../../../common/widgets/brand/brand_showcase.dart';
 import '../../../../../common/widgets/layouts/grid_layout.dart';
