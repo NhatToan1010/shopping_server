@@ -166,6 +166,14 @@ class ProductRepository extends GetxController {
       throw e.toString();
     }
   }
+  
+  Future<void> updateProductStock(String productId, int newStock) async {
+    try {
+      await _db.collection("Products").doc(productId).set({"Stock": newStock});
+    } catch (e) {
+      throw e.toString();
+    }
+  }
 
   Future<void> uploadDummyData(List<ProductModel> products) async {
     try {

@@ -29,7 +29,7 @@ class BrandShowcase extends StatelessWidget {
         children: [
           // ===== Brand with product count
           Text(
-            '  ${brand!.brandName} Top Products',
+            'Top Products',
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: AppSize.spaceBtwItems),

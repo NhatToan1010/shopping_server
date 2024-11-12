@@ -28,10 +28,10 @@ class ProductDetailsScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // ----- Product Image Slider
+              // -----* Product Image Slider
               ProductImageSlider(product: product),
       
-              // ----- Product Details
+              // -----* Product Details
               Padding(
                 padding: const EdgeInsets.all(AppSize.defaultSpace),
                 child: Column(
@@ -40,20 +40,21 @@ class ProductDetailsScreen extends StatelessWidget {
                     // ===== Rating & Share Button
                     const RatingAndShare(),
       
-                    // ===== Price, Title, Stock, & Brand
+                    // *=====* Price, Title, Stock, & Brand
                     ProductMetaData(product: product),
                     const SizedBox(height: AppSize.spaceBtwItems),
       
-                    // ===== Attributes, Colors, Sizes
+                    // *=====* Attributes, Colors, Sizes
                     if (product.productType == ProductType.variable.toString())
                       Column(
                         children: [
+                          // *=====*
                           ProductAttribute(product: product),
                           const SizedBox(height: AppSize.spaceBtwSections),
                         ],
                       ),
       
-                    // ===== Checkout Button
+                    // *=====* Checkout Button
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -84,7 +85,8 @@ class ProductDetailsScreen extends StatelessWidget {
             ],
           ),
         ),
-      
+
+        // *====*
         bottomNavigationBar: BottomAddToCart(product: product,),
       ),
     );

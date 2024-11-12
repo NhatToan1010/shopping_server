@@ -21,7 +21,7 @@ class CartScreen extends StatelessWidget {
           showBackArrow: true,
         ),
       
-        // ----- Body
+        // *-----* Body
         body: Obx(
           () {
             return controller.cartItems.isEmpty
@@ -34,7 +34,8 @@ class CartScreen extends StatelessWidget {
                   );
           },
         ),
-      
+
+        // *====*
         bottomNavigationBar: controller.cartItems.isEmpty ? const SizedBox() : Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: AppSize.medium,

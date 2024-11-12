@@ -22,17 +22,14 @@ class BrandAndProductDisplay extends StatelessWidget {
     return Column(
       children: [
         // ----- Brands Showcase -----
-        BrandShowcase(
-          brand: products.map((item) => item.brand).elementAt(index),
-          images: products.map((item) => item.thumbnail).take(3).toList(),
-        ),
-        const SizedBox(height: AppSize.spaceBtwItems),
+        // BrandShowcase(
+        //   brand: products.map((item) => item.brand).elementAt(index),
+        //   images: products.map((item) => item.thumbnail).take(3).toList(),
+        // ),
+        // const SizedBox(height: AppSize.spaceBtwItems),
 
         // ----- Product you might like -----
-        const SectionHeading(
-          title: 'Products you might like',
-          showActionButton: false,
-        ),
+
         const SizedBox(height: AppSize.spaceBtwItems),
 
         // ===== Product Grid
@@ -43,8 +40,6 @@ class BrandAndProductDisplay extends StatelessWidget {
             productIndex: products[index],
           ),
         ),
-
-        const SizedBox(height: AppSize.spaceBtwSections),
       ],
     );
   }

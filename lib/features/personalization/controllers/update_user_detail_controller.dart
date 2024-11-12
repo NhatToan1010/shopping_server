@@ -56,6 +56,8 @@ class UpdateUserDetailController extends GetxController {
       };
       await userRepo.updateSpecificField(name);
 
+      // User(uid, firstName, lastName, ...)
+
       // Update data for current user
       userController.user.value.firstName = firstName.text.trim();
       userController.user.value.lastName = lastName.text.trim();

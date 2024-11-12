@@ -19,7 +19,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // ----- Image
+        // *-----* Image
         CircleImage(
           imageUrl: cartItem.image ?? '',
           width: 56,
@@ -32,7 +32,7 @@ class CartItem extends StatelessWidget {
         ),
         const SizedBox(width: AppSize.spaceBtwItems),
 
-        // ----- Title, Price, Size
+        // *-----* Title, Price, Size
         Expanded(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -41,7 +41,7 @@ class CartItem extends StatelessWidget {
               Flexible(child: ProductTitle(title: cartItem.productName, maxLines: 1, smallSize: false,)),
               ProductBrandText(brandName: cartItem.brandName!),
 
-              // ----- Attribute
+              // *-----* Attribute
               if (cartItem.variationId != '')
                 Text.rich(TextSpan(
                   children: (cartItem.selectedVariation ?? {}).entries.map((item) => TextSpan(

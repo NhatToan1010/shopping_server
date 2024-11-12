@@ -110,7 +110,7 @@ class SettingMenuBody extends StatelessWidget {
             )),
         const SizedBox(height: AppSize.spaceBtwSections),
 
-        // ----- Log Out Button
+        // *-----* Log Out Button
         SizedBox(
           width: double.infinity,
           child: OutlinedButton(
