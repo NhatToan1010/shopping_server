@@ -38,7 +38,7 @@ class CheckoutScreen extends StatelessWidget {
             padding: EdgeInsets.all(AppSize.defaultSpace),
             child: Column(
               children: [
-                // ----- List Order Item
+                // *-----* List Order Item
                 ListCartItem(showAddRemoveButton: false),
                 SizedBox(height: AppSize.spaceBtwSections),
       
@@ -46,14 +46,14 @@ class CheckoutScreen extends StatelessWidget {
                 CouponTextField(),
                 SizedBox(height: AppSize.spaceBtwSections),
       
-                // ----- Billing Section
+                // *-----* Billing Section
                 RoundedContainer(
                   padding: EdgeInsets.all(AppSize.medium),
                   showBorder: true,
                   defaultBackgroundColor: true,
                   child: Column(
                     children: [
-                      // ----- Pricing
+                      // *-----* Pricing
                       BillingAmountSection(),
                       SizedBox(height: AppSize.spaceBtwItems),
       
@@ -61,11 +61,11 @@ class CheckoutScreen extends StatelessWidget {
                       Divider(),
                       SizedBox(height: AppSize.spaceBtwItems),
       
-                      // ----- Payment Methods
+                      // *-----* Payment Methods
                       BillingPaymentSection(),
                       SizedBox(height: AppSize.spaceBtwItems),
       
-                      // ----- Address
+                      // *-----* Address
                       BillingAddressSection(),
                     ],
                   ),
@@ -80,6 +80,7 @@ class CheckoutScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(
               horizontal: AppSize.medium, vertical: AppSize.small),
           child: ElevatedButton(
+            // Nếu thành tiền > 0 thì bắt sự kiện thanh toán
             onPressed: () => totalAmount > 0.0
                 ? orderController.processOrder(totalAmount)
                 : null,

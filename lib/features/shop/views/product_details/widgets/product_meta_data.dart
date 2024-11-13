@@ -69,11 +69,11 @@ class ProductMetaData extends StatelessWidget {
         ),
         const SizedBox(height: AppSize.spaceBtwItems / 1.5),
 
-        // ----- Title
+        // *-----* Title
         ProductTitle(title: product.title, smallSize: false),
         const SizedBox(height: AppSize.spaceBtwItems / 1.5),
 
-        // ----- Stock Status
+        // *-----* Stock Status
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -87,7 +87,7 @@ class ProductMetaData extends StatelessWidget {
         ),
         const SizedBox(height: AppSize.spaceBtwItems / 1.5),
 
-        // ----- Brand
+        // *-----* Brand
         Row(
           children: [
             FutureBuilder(

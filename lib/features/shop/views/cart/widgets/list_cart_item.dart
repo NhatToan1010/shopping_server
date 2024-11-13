@@ -48,7 +48,7 @@ class ListCartItem extends StatelessWidget {
                             SizedBox(
                                 width: DeviceUtils.getScreenWidth() * 0.15),
 
-                            // ----- Add & Remove Button
+                            // *-----* Add & Remove Button
                             ProductQuantityWithAddRemoveButton(
                               quantity: cartItem.quantity,
                               add: () =>
@@ -59,7 +59,7 @@ class ListCartItem extends StatelessWidget {
                           ],
                         ),
 
-                        // ----- Price
+                        // *-----* Price
                         ProductPriceText(
                             price: (cartItem.price * cartItem.quantity)
                                 .toStringAsFixed(1))

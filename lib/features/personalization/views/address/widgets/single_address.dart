@@ -58,11 +58,12 @@ class SingleAddress extends StatelessWidget {
                     color: isDark ? AppPallete.backgroundDark : AppPallete.backgroundLight,
                   ),
                 ),
+                // ********
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-                    // --- Receiver Name
+                    // *-----* Receiver Name
                     Text(
                       userAddress.addressName,
                       style: Theme.of(context)
@@ -74,7 +75,7 @@ class SingleAddress extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSize.spaceBtwItems / 2),
 
-                    // --- Phone No
+                    // *-----* Phone No
                     Row(
                       children: [
                         Icon(Iconsax.mobile, color: primaryText, size: 16),
@@ -93,7 +94,7 @@ class SingleAddress extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSize.spaceBtwItems / 2),
 
-                    // --- Delivery Address
+                    // *---* Delivery Address
                     Row(
                       children: [
                         Icon(Iconsax.location, color: primaryText, size: 16),

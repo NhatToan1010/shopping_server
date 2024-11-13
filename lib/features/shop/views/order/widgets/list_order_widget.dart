@@ -24,7 +24,7 @@ class ListOrderWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ----- Shipping Status
+            // *-----* Shipping Status
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,6 +60,7 @@ class ListOrderWidget extends StatelessWidget {
                   ),
                 ),
 
+                // *=====* Order Date
                 Expanded(
                   child: Row(
                     children: [
@@ -92,12 +93,12 @@ class ListOrderWidget extends StatelessWidget {
 
             const SizedBox(height: AppSize.spaceBtwItems),
 
-            // ----- Order Code & Delivery Date
+            // *-----* Order Code & Delivery Date
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // ----- Order Code
+                // *-----* Order Code
                 Expanded(
                   child: Row(
                     children: [
@@ -119,7 +120,7 @@ class ListOrderWidget extends StatelessWidget {
                   ),
                 ),
 
-                // ----- Delivery Date
+                // *-----* Delivery Date
                 Expanded(
                   child: Row(
                     children: [
@@ -146,7 +147,7 @@ class ListOrderWidget extends StatelessWidget {
             ),
             const SizedBox(height: AppSize.spaceBtwItems),
 
-            // --- Delivery Address
+            // *-----* Delivery Address
             Row(
               children: [
                 const Icon(Iconsax.location, size: 24),

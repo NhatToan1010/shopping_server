@@ -3,7 +3,6 @@ import 'package:shopping_server/utils/formatters/formatter.dart';
 
 class UserModel {
   final String id;
-  final String email;
   String firstName;
   String lastName;
   final String userName;
@@ -12,7 +11,6 @@ class UserModel {
 
   UserModel({
     required this.id,
-    required this.email,
     required this.firstName,
     required this.lastName,
     required this.userName,
@@ -23,7 +21,6 @@ class UserModel {
   toJSON() {
     return {
       "UserName": userName,
-      "Email": email,
       "FirstName": firstName,
       "LastName": lastName,
       "PhoneNumber": phoneNumber,
@@ -38,7 +35,6 @@ class UserModel {
       return UserModel(
         id: document.id,
         userName: data["UserName"] ?? '',
-        email: data["Email"] ?? '',
         firstName: data["FirstName"] ?? '',
         lastName: data["LastName"] ?? '',
         phoneNumber: data["PhoneNumber"] ?? '',
@@ -74,7 +70,6 @@ class UserModel {
   // ----- Create empty user
   static UserModel empty() => UserModel(
       id: '',
-      email: '',
       firstName: '',
       lastName: '',
       userName: '',

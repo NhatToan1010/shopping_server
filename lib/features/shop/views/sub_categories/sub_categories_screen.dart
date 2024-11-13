@@ -55,22 +55,17 @@ class SubCategoriesScreen extends StatelessWidget {
                     return ListView.separated(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      separatorBuilder: (_, __) =>
-                          const SizedBox(width: AppSize.small),
+                      separatorBuilder: (_, __) => const SizedBox(width: AppSize.small),
                       itemCount: subCategories.length,
                       itemBuilder: (_, index) {
                         final subCategory = subCategories[index];
       
                         return FutureBuilder(
-                            future: controller.getCategoryProduct(
-                                categoryId: subCategory.id),
+                            future: controller.getCategoryProduct(categoryId: subCategory.id),
                             builder: (context, snapshot) {
                               // --- Check snapshot state status
-                              const loader =
-                                  HorizontalProductShimmerEffect(itemCount: 2);
-                              final widget =
-                                  CloudHelperFunctions.checkMultipleStateRecord(
-                                      snapshot: snapshot, loader: loader);
+                              const loader = HorizontalProductShimmerEffect(itemCount: 2);
+                              final widget = CloudHelperFunctions.checkMultipleStateRecord(snapshot: snapshot, loader: loader);
       
                               if (widget != null) return widget;
       

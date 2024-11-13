@@ -68,7 +68,7 @@ class BottomAddToCart extends StatelessWidget {
             // ----- Add to cart Button
             ElevatedButton(
               onPressed: () {
-                controller.addToCart(product);
+                controller.addToCart(product); // ==> CartController
               },
               child: const Text('Add To Cart'),
             )
