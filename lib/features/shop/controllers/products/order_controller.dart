@@ -75,6 +75,8 @@ class OrderController extends GetxController {
       // Lưu dữ liệu vừa tạo vào CSDL của người dùng tương ứng
       await orderRepository.saveOrder(newOrder, userId);
 
+      cartController.updateProductStock();
+
       // Update the cart status
       // Làm rỗng giỏ hàng
       cartController.clearCart();

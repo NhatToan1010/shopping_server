@@ -28,8 +28,10 @@ class ProductController extends GetxController {
       isLoading.value = true;
 
       final list = await _repo.getFeatureItem();
+      final allList = await _repo.getAllFeatureItem();
 
       featureProducts.assignAll(list);
+      listProduct.assignAll(allList);
     } catch (e) {
       isLoading.value = false;
       CustomLoader.errorSnackBar(title: "Oh Snap!", message: e.toString());

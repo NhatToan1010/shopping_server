@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../features/shop/models/cart_model.dart';
 import '../../features/shop/models/products/product_model.dart';
 import '../../utils/exceptions/firebase_exceptions.dart';
 import '../../utils/exceptions/platform_exceptions.dart';
@@ -167,9 +168,9 @@ class ProductRepository extends GetxController {
     }
   }
   
-  Future<void> updateProductStock(String productId, int newStock) async {
+  Future<void> updateProductStock(CartModel cartItem, int newStock) async {
     try {
-      await _db.collection("Products").doc(productId).set({"Stock": newStock});
+      await _db.collection("Products").doc(cartItem.productId).update({"Stock": newStock});
     } catch (e) {
       throw e.toString();
     }

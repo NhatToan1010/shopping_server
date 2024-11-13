@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shopping_server/data/repositories/product_repository.dart';
+import 'package:shopping_server/features/shop/controllers/products/product_controller.dart';
 import 'package:shopping_server/features/shop/controllers/products/product_variation_controller.dart';
 import 'package:shopping_server/features/shop/models/products/product_model.dart';
 import 'package:shopping_server/utils/constants/enums.dart';
@@ -220,8 +221,9 @@ class CartController extends GetxController {
   void updateProductStock() {
     try {
       for (var index = 0; index < cartItems.length; index++) {
+        final newStock = ProductController.instance.listProduct[index].stock - cartItems[index].quantity;
         ProductRepository.instance.updateProductStock(
-            cartItems[index].productId, cartItems[index].quantity);
+            cartItems[index], newStock);
       }
     } catch (e) {
       CustomLoader.errorSnackBar(title: 'Oh Snap!', message: e.toString());
